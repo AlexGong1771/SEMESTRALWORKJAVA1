@@ -27,13 +27,18 @@ public class Rook extends Piece {
     }
 
     @Override
-    public void move(Cell previousCell, Cell sourceCell) {
-
+    public void move(Cell previousCell, Cell sourceCell , Game game ) {
+        if ( previousCell.getRow ( ) != sourceCell.getRow ( ) && previousCell.getCol ( ) != sourceCell.getCol ( ) ) {
+           game.clear ( );
+        } else {
+            capture(game);
+            game.movePiece ( );
+        }
     }
 
     @Override
-    public void capture(Cell sourceCell) {
-
+    public void capture(Game game) {
+      super.capture(game);
     }
 
 

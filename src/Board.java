@@ -22,7 +22,7 @@ public class Board  {
     private Knight[] whiteKnight = new Knight[ 2 ];
     private Rook[] whiteRook = new Rook[ 2 ];
     private King whiteKing = new King ( Colors.WHITE );
-    private Queen whiteQueen = new Queen ( Colors.BLACK );
+    private Queen whiteQueen = new Queen ( Colors.WHITE );
     //tu ukazujeme ten Board
     public Board ( ) {
         this.initializePieces ( );

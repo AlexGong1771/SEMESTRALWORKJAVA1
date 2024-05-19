@@ -53,6 +53,9 @@ public abstract class Piece {
     }
     // Abstract methods for move and capture actions
     public abstract boolean isValidMove(Cell previousCell, Cell sourceCell);
-    public abstract void move(Cell previousCell, Cell sourceCell);
-    public abstract void capture(Cell sourceCell);
+    public abstract void move(Cell previousCell, Cell sourceCell , Game game );
+    public void capture(Game game){
+        game.setCapture(true);
+    };
+
 }

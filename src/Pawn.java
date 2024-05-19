@@ -28,15 +28,32 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public void move(Cell previousCell, Cell sourceCell) {
+    public void move(Cell previousCell, Cell sourceCell ,Game game ) {
+         int rowOffset = 1;
+        int  colOffset = 6;
+
+        if (previousCell.getPiece().getColor() == Colors.BLACK) {
+            rowOffset = -1;
+            colOffset = 1;
+        }
+        //zistuje kde bol ten panacik to je ten pohyb
+        if (previousCell.getRow() == colOffset && previousCell.getRow() == sourceCell.getRow() + rowOffset + rowOffset && previousCell.getCol() == sourceCell.getCol()) {
+            game.movePiece();
+        } else if (previousCell.getRow() == sourceCell.getRow() + rowOffset && previousCell.getCol() == sourceCell.getCol()) {
+            game.movePiece();
+        } else if (!sourceCell.isOpen() && previousCell.getRow() == sourceCell.getRow() + rowOffset && Math.abs(previousCell.getCol() - sourceCell.getCol()) == 1) {
+            capture(game);
+            game.movePiece();
+        } else {
+            game.clear();
+
+        }
+
 
     }
 
     @Override
-    public void capture(Cell sourceCell) {
-
+    public void capture(Game game) {
+        super.capture(game);
     }
-
-
-
 }
