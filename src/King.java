@@ -9,35 +9,34 @@ import javax.swing.ImageIcon;
 
 
 public class King  extends Piece {
-    //trieda Rook , pracujeme s farbou a v zaleznosti od farby ziskavame obrazok tej farby(black, white)
-    private String color;
-    private ImageIcon icon ;
-    public King(String color) {
-        if ( color.equals ( "white" )  ) {
-            this.color = "white" ;
-            this.icon = new ImageIcon("C:\\Users\\42194\\IdeaProjects\\SEMESTRALWORKJAVA\\res\\obrazky\\white-king.png");
-            this.setIcon(this.icon);
-        } else {
-            this.color = "black" ;
-            this.icon = new ImageIcon("C:\\Users\\42194\\IdeaProjects\\SEMESTRALWORKJAVA\\res\\obrazky\\black-king.png");
-            this.setIcon(this.icon);
+    //trieda King , pracujeme s farbou a v zaleznosti od farby ziskavame obrazok tej farby(black, white)
+    public King(Colors color) {
+        super(color );
+
+
+        if (color.equals(Colors.BLACK)){
+            super.setIcon(new ImageIcon("C:\\Users\\42194\\IdeaProjects\\SEMESTRALWORKJAVA\\res\\obrazky\\black-king.png"));
+        } else{
+            super.setIcon(new ImageIcon("C:\\Users\\42194\\IdeaProjects\\SEMESTRALWORKJAVA\\res\\obrazky\\white-king.png"));
         }
-    }
-    //vrati farbu
-
-    public String getColor()  {
-        return this.color;
-    }
-    //vrati typ figurky
-
-    public String getType()  {
-        return "king";
     }
 
     @Override
-    public void handleMove(Cell sourceCell) {
+    public boolean isValidMove(Cell previousCell, Cell sourceCell) {
+        return false;
+    }
+
+    @Override
+    public void move(Cell previousCell, Cell sourceCell) {
 
     }
+
+    @Override
+    public void capture(Cell sourceCell) {
+
+    }
+
+
 
 
 }

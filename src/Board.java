@@ -15,14 +15,14 @@ public class Board  {
     private Bishop[] blackBishop = new Bishop[ 2 ];
     private Knight[] blackKnight = new Knight[ 2 ];
     private Rook[] blackRook = new Rook[ 2 ];
-    private King blackKing = new King ( "black" );
-    private Queen blackQueen = new Queen ( "black" );
+    private King blackKing = new King ( Colors.BLACK);
+    private Queen blackQueen = new Queen ( Colors.BLACK );
     private Pawn[] whitePawn = new Pawn[ 8 ];
     private Bishop[] whiteBishop = new Bishop[ 2 ];
     private Knight[] whiteKnight = new Knight[ 2 ];
     private Rook[] whiteRook = new Rook[ 2 ];
-    private King whiteKing = new King ( "white" );
-    private Queen whiteQueen = new Queen ( "white" );
+    private King whiteKing = new King ( Colors.WHITE );
+    private Queen whiteQueen = new Queen ( Colors.BLACK );
     //tu ukazujeme ten Board
     public Board ( ) {
         this.initializePieces ( );
@@ -56,17 +56,17 @@ public class Board  {
     public void initializePieces ( ) {
         int i;
         for ( i = 0; i < 8 ; ++i ) {
-            this.blackPawn[ i ] = new Pawn ( "black" );
-            this.whitePawn[ i ] = new Pawn ( "white" );
+            this.blackPawn[ i ] = new Pawn ( Colors.BLACK );
+            this.whitePawn[ i ] = new Pawn ( Colors.WHITE );
         }
 
         for ( i = 0; i < 2 ; ++i ) {
-            this.blackBishop[ i ] = new Bishop ( "black" );
-            this.whiteBishop[ i ] = new Bishop ( "white" );
-            this.blackKnight[ i ] = new Knight ( "black" );
-            this.whiteKnight[ i ] = new Knight ( "white" );
-            this.blackRook[ i ] = new Rook ( "black" );
-            this.whiteRook[ i ] = new Rook ( "white" );
+            this.blackBishop[ i ] = new Bishop ( Colors.BLACK);
+            this.whiteBishop[ i ] = new Bishop ( Colors.WHITE );
+            this.blackKnight[ i ] = new Knight ( Colors.BLACK );
+            this.whiteKnight[ i ] = new Knight ( Colors.WHITE);
+            this.blackRook[ i ] = new Rook ( Colors.BLACK );
+            this.whiteRook[ i ] = new Rook ( Colors.WHITE );
         }
 
     }

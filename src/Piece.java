@@ -11,8 +11,8 @@ import javax.swing.JLabel;
 // Abstract class for all types of pieces
 public abstract class Piece {
 
-    private String color = "white"; // Color of the piece
-    private String type;git
+    private Colors color ; // Color of the piece
+
 
 
     private ImageIcon icon; // Icon of the piece
@@ -22,30 +22,24 @@ public abstract class Piece {
         label = new JLabel();
     }
 
-    public Piece(String color, String type) {
+    public Piece(Colors color) {
         this.color = color;
-        this.type = type;
         label = new JLabel();
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
 
-    public void setColor(String color) {
+
+    public void setColor(Colors color) {
         this.color = color;
     }
 
     // Abstract methods to get the color and type of the piece
-    public  String getColor(){
+    public  Colors getColor(){
         return this.color;
     }
 
 
 
-    public  String getType(){
-        return this.type;
-    }
 
     // Method to set the icon of the JLabel
     public void setIcon(ImageIcon icon) {
@@ -57,5 +51,8 @@ public abstract class Piece {
     public JLabel getLabel() {
         return label;
     }
-    public abstract void handleMove(Cell sourceCell);
+    // Abstract methods for move and capture actions
+    public abstract boolean isValidMove(Cell previousCell, Cell sourceCell);
+    public abstract void move(Cell previousCell, Cell sourceCell);
+    public abstract void capture(Cell sourceCell);
 }

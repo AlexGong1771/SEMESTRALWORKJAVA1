@@ -13,9 +13,9 @@ public class Game  implements MouseListener {
 
     private static Cell previousCell = null;
     private static Cell sourceCell = null;
-    private static  String pieceColored = "" ;
+    private static  Colors pieceColored  ;
 
-    private static String whoseMove = "";
+    private static Colors whoseMove ;
     private static boolean active = false;
     private static boolean capture = false;
     private Color selected;
@@ -33,7 +33,7 @@ public class Game  implements MouseListener {
         c.gridx = 9;
         c.gridy = 0;
         board.initializeChessBoard ( );
-        whoseMove = "white";
+        whoseMove = Colors.WHITE;
 
         for ( int i = 0 ; i < 8 ; ++i ) {
             for ( int j = 0 ; j < 8 ; ++j ) {
@@ -66,15 +66,15 @@ public class Game  implements MouseListener {
                 this.clear ( );
             }
         } else if ( active && previousCell.getPiece ( ).getColor ( ).equals ( whoseMove ) ) {
-            String pieceType = previousCell.getPiece ( ).getType ( );
-            String pieceColor = "";
+           Piece pieceType = previousCell.getPiece ( );
+            Colors pieceColor ;
             pieceColor = previousCell.getPiece ( ).getColor ( );
             int rowOffset;
             int colOffset;
-            if ( pieceType.equalsIgnoreCase ( "pawn" ) ) {
+            if ( pieceType instanceof Pawn ) {
                 rowOffset = 1;
                 colOffset = 6;
-                if ( pieceColor.equalsIgnoreCase ( "black" ) ) {
+                if ( pieceColor.equals(Colors.BLACK) ) {
                     rowOffset = -1;
                     colOffset = 1;
                 }
@@ -89,21 +89,21 @@ public class Game  implements MouseListener {
                 } else {
                     this.clear ( );
                 }
-            } else if ( pieceType.equalsIgnoreCase ( "knight" ) ) {
+            } else if ( pieceType instanceof Knight ) {
                 if ( ( previousCell.getRow ( ) != sourceCell.getRow ( ) + 1 || previousCell.getCol ( ) != sourceCell.getCol ( ) + 2 ) && ( previousCell.getRow ( ) != sourceCell.getRow ( ) + 1 || previousCell.getCol ( ) != sourceCell.getCol ( ) - 2 ) && ( previousCell.getRow ( ) != sourceCell.getRow ( ) - 1 || previousCell.getCol ( ) != sourceCell.getCol ( ) + 2 ) && ( previousCell.getRow ( ) != sourceCell.getRow ( ) - 1 || previousCell.getCol ( ) != sourceCell.getCol ( ) - 2 ) && ( previousCell.getRow ( ) != sourceCell.getRow ( ) + 2 || previousCell.getCol ( ) != sourceCell.getCol ( ) + 1 ) && ( previousCell.getRow ( ) != sourceCell.getRow ( ) - 2 || previousCell.getCol ( ) != sourceCell.getCol ( ) + 1 ) && ( previousCell.getRow ( ) != sourceCell.getRow ( ) + 2 || previousCell.getCol ( ) != sourceCell.getCol ( ) - 1 ) && ( previousCell.getRow ( ) != sourceCell.getRow ( ) - 2 || previousCell.getCol ( ) != sourceCell.getCol ( ) - 1 ) ) {
                     this.clear ( );
                 } else {
                     capture = true;
                     this.movePiece ( );
                 }
-            } else if ( pieceType.equalsIgnoreCase ( "rook" ) ) {
+            } else if ( pieceType instanceof  Rook ) {
                 if ( previousCell.getRow ( ) != sourceCell.getRow ( ) && previousCell.getCol ( ) != sourceCell.getCol ( ) ) {
                     this.clear ( );
                 } else {
                     capture = true;
                     this.movePiece ( );
                 }
-            } else if ( pieceType.equalsIgnoreCase ( "bishop" ) ) {
+            } else if ( pieceType instanceof Bishop ) {
                 rowOffset = previousCell.getRow ( ) - sourceCell.getRow ( );
                 colOffset = previousCell.getCol ( ) - sourceCell.getCol ( );
                 if ( Math.abs ( rowOffset ) == Math.abs ( colOffset ) ) {
@@ -112,7 +112,7 @@ public class Game  implements MouseListener {
                 } else {
                     this.clear ( );
                 }
-            } else if ( pieceType.equalsIgnoreCase ( "queen" ) ) {
+            } else if ( pieceType instanceof Queen ) {
                 rowOffset = previousCell.getRow ( ) - sourceCell.getRow ( );
                 colOffset = previousCell.getCol ( ) - sourceCell.getCol ( );
                 if ( Math.abs ( rowOffset ) != Math.abs ( colOffset ) && previousCell.getRow ( ) != sourceCell.getRow ( ) && previousCell.getCol ( ) != sourceCell.getCol ( ) ) {
@@ -121,41 +121,41 @@ public class Game  implements MouseListener {
                     capture = true;
                     this.movePiece ( );
                 }
-            } else if ( pieceType.equalsIgnoreCase ( "king" ) ) {
+            } else if ( pieceType instanceof King ) {
                 rowOffset = previousCell.getRow ( ) - sourceCell.getRow ( );
                 colOffset = previousCell.getCol ( ) - sourceCell.getCol ( );
                 if ( Math.abs ( rowOffset ) != 1 && Math.abs ( colOffset ) != 1 ) {
-                    if ( pieceColored.equals ( "white" ) && previousCell.getRow ( ) == 7 && previousCell.getCol ( ) == 4 ) {
-                        if ( sourceCell.getRow ( ) == 7 && sourceCell.getCol ( ) == 6 && board.getCell(7, 5).isOpen ( ) && board.getCell(7, 6).isOpen ( ) && board.getCell( 7 , 7 ).getPiece ( ).getType ( ).equals ( "rook" ) && board.getCell(7, 7).getPiece ( ).getColor ( ).equals ( "white" ) ) {
+                    if ( pieceColored.equals ( Colors.WHITE ) && previousCell.getRow ( ) == 7 && previousCell.getCol ( ) == 4 ) {
+                        if ( sourceCell.getRow ( ) == 7 && sourceCell.getCol ( ) == 6 && board.getCell(7, 5).isOpen ( ) && board.getCell(7, 6).isOpen ( ) && board.getCell( 7 , 7 ).getPiece ( )instanceof Rook && board.getCell(7, 7).getPiece ( ).getColor ( ).equals ( Colors.WHITE ) ) {
                             this.movePiece ( );
                             sourceCell = board.getCell( 7 , 5 );
                             previousCell = board.getCell( 7 , 7 );
-                            whoseMove = "white";
+                            whoseMove = Colors.WHITE;
 
                             this.selected = board.getCell( 7 , 5 ).getBackground ( );
                             this.movePiece ( );
-                        } else if ( sourceCell.getRow ( ) == 7 && sourceCell.getCol ( ) == 2 && board.getCell( 7 , 1 ).isOpen ( ) && board.getCell( 7 , 2 ).isOpen ( ) && board.getCell( 7 , 3 ).isOpen ( ) && board.getCell( 7 , 0 ).getPiece ( ).getType ( ).equals ( "rook" ) && board.getCell( 7 , 0 ).getPiece ( ).getColor ( ).equals ( "white" ) ) {
+                        } else if ( sourceCell.getRow ( ) == 7 && sourceCell.getCol ( ) == 2 && board.getCell( 7 , 1 ).isOpen ( ) && board.getCell( 7 , 2 ).isOpen ( ) && board.getCell( 7 , 3 ).isOpen ( ) && board.getCell( 7 , 0 ).getPiece ( ) instanceof  Rook && board.getCell( 7 , 0 ).getPiece ( ).getColor ( ).equals ( Colors.WHITE) ) {
                             this.movePiece ( );
                             sourceCell = board.getCell( 7 , 3 );
                             previousCell = board.getCell( 7 , 0 );
-                            whoseMove = "white";
+                            whoseMove = Colors.WHITE;
 
                             this.movePiece ( );
                         }
-                    } else if ( pieceColored.equals ( "black" ) && previousCell.getRow ( ) == 0 && previousCell.getCol ( ) == 4 ) {
-                        if ( sourceCell.getRow ( ) == 0 && sourceCell.getCol ( ) == 6 && board.getCell( 0 , 5 ).isOpen ( ) && board.getCell( 0 , 6 ).isOpen ( ) && board.getCell( 0 , 7 ).getPiece ( ).getType ( ).equals ( "rook" ) && board.getCell( 0 , 7 ).getPiece ( ).getColor ( ).equals ( "black" ) ) {
+                    } else if ( pieceColored.equals ( Colors.BLACK ) && previousCell.getRow ( ) == 0 && previousCell.getCol ( ) == 4 ) {
+                        if ( sourceCell.getRow ( ) == 0 && sourceCell.getCol ( ) == 6 && board.getCell( 0 , 5 ).isOpen ( ) && board.getCell( 0 , 6 ).isOpen ( ) && board.getCell( 0 , 7 ).getPiece ( ) instanceof Rook && board.getCell( 0 , 7 ).getPiece ( ).getColor ( ).equals ( Colors.WHITE ) ) {
                             this.movePiece ( );
                             sourceCell = board.getCell( 0 , 5 );
                             previousCell = board.getCell( 0 , 7 );
-                            whoseMove = "black";
+                            whoseMove = Colors.BLACK;
 
                             this.selected = board.getCell( 0 , 5 ).getBackground ( );
                             this.movePiece ( );
-                        } else if ( sourceCell.getRow ( ) == 0 && sourceCell.getCol ( ) == 2 && board.getCell( 0 , 1 ).isOpen ( ) && board.getCell( 0 , 2 ).isOpen ( ) && board.getCell( 0 , 3 ).isOpen ( ) && board.getCell( 0 , 0 ).getPiece ( ).getType ( ).equals ( "rook" ) && board.getCell( 0 , 0 ).getPiece ( ).getColor ( ).equals ( "black" ) ) {
+                        } else if ( sourceCell.getRow ( ) == 0 && sourceCell.getCol ( ) == 2 && board.getCell( 0 , 1 ).isOpen ( ) && board.getCell( 0 , 2 ).isOpen ( ) && board.getCell( 0 , 3 ).isOpen ( ) && board.getCell( 0 , 0 ).getPiece ( )instanceof Rook && board.getCell( 0 , 0 ).getPiece ( ).getColor ( ).equals ( Colors.BLACK ) ) {
                             this.movePiece ( );
                             sourceCell = board.getCell( 0 , 3 );
                             previousCell = board.getCell( 0 , 0 );
-                            whoseMove = "black";
+                            whoseMove = Colors.BLACK;
 
                             this.movePiece ( );
                         }
@@ -175,7 +175,7 @@ public class Game  implements MouseListener {
         System.out.println ( "Bol pohyb" );
 
 
-        if ( capture && !sourceCell.isOpen ( ) && !previousCell.getPiece ( ).getColor ( ).equalsIgnoreCase ( pieceColored ) ) {
+        if ( capture && !sourceCell.isOpen ( ) && !previousCell.getPiece ( ).getColor ( ).equals( pieceColored ) ) {
             sourceCell.remove ( sourceCell.getPiece ( ) .getLabel());
             sourceCell.setPiece ( null );
             capture = false;
@@ -191,10 +191,10 @@ public class Game  implements MouseListener {
         previousCell.setPiece ( null );
         sourceCell.setStatus ( false );
         previousCell = null;
-        if ( whoseMove.equals ( "white" ) ) {
-            whoseMove = "black";
+        if ( whoseMove.equals ( Colors.WHITE ) ) {
+            whoseMove = Colors.BLACK;
         } else {
-            whoseMove = "white";
+            whoseMove = Colors.WHITE;
         }
 
     }
