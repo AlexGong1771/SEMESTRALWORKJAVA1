@@ -83,8 +83,10 @@ public class Game  implements MouseListener {
                 this.clear();
             }
         } else if (active && previousCell.getPiece().getColor().equals(this.whoseMove)) {
+            //////////////////////////// POLOMORFIZMUS //////////////////////////////////////
             Piece pieceType = previousCell.getPiece();
             pieceType.move(previousCell, sourceCell, this);
+            /////////////////////////////////////////////////////////////////////////////////
 
         }
 
