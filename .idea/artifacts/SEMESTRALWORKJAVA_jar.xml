@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SEMESTRALWORKJAVA:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SEMESTRALWORKJAVA_jar</output-path>
+    <root id="archive" name="SEMESTRALWORKJAVA.jar">
+      <element id="module-output" name="SEMESTRALWORKJAVA" />
+    </root>
+  </artifact>
+</component>
