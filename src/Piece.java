@@ -15,9 +15,7 @@ public abstract class Piece {
     private ImageIcon icon; // Ikona reprezentujúca figúrku vizuálne
     private JLabel label;   // JLabel na zobrazenie figúrky na šachovnici
 
-    /**
-     * Predvolený konštruktor inicializujúci label.
-     */
+
 
 
     /**
