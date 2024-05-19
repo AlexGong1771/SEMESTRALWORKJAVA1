@@ -14,26 +14,23 @@ public class Queen extends Piece {
         super(color);
 
 
-        if (color.equals(Colors.BLACK)){
+        if (color.equals(Colors.BLACK)) {
             super.setIcon(new ImageIcon("C:\\Users\\42194\\IdeaProjects\\SEMESTRALWORKJAVA\\res\\obrazky\\black-queen.png"));
-        } else{
+        } else {
             super.setIcon(new ImageIcon("C:\\Users\\42194\\IdeaProjects\\SEMESTRALWORKJAVA\\res\\obrazky\\WHITEQUEEN.png"));
         }
     }
 
-    @Override
-    public boolean isValidMove(Cell previousCell, Cell sourceCell) {
-        return false;
-    }
+
 
     @Override
-    public void move(Cell previousCell, Cell sourceCell ,Game game ) {
+    public void move(Cell previousCell, Cell sourceCell , Game game ) {
         int rowOffset = previousCell.getRow ( ) - sourceCell.getRow ( );
-       int  colOffset = previousCell.getCol ( ) - sourceCell.getCol ( );
+        int  colOffset = previousCell.getCol ( ) - sourceCell.getCol ( );
         if ( Math.abs ( rowOffset ) != Math.abs ( colOffset ) && previousCell.getRow ( ) != sourceCell.getRow ( ) && previousCell.getCol ( ) != sourceCell.getCol ( ) ) {
             game.clear ( );
         } else {
-            capture(game);
+            this.capture(game);
             game.movePiece ( );
         }
 
@@ -41,7 +38,7 @@ public class Queen extends Piece {
 
     @Override
     public void capture(Game game) {
-      super.capture(game);
+        super.capture(game);
     }
 
 

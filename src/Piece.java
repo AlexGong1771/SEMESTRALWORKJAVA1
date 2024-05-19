@@ -1,61 +1,82 @@
-import javax.swing.ImageIcon; // Import statements
+import javax.swing.ImageIcon; // Naše importy
 import javax.swing.JLabel;
 
 /**
- * Write a description of class Piece here.
+ * Abstraktná trieda reprezentujúca šachovú figúrku.
+ * Táto trieda poskytuje základné atribúty a metódy spoločné pre všetky šachové figúrky,
+ * ako farba, ikona a label.
+ * Každá konkrétna šachová figúrka (ako Kráľ, Veža, atď.) bude rozširovať túto triedu.
  *
- * @author (your name)
- * @version (a version number or a date)
+ *
  */
-
-// Abstract class for all types of pieces
 public abstract class Piece {
 
-    private Colors color ; // Color of the piece
+    private Colors color; // Farba figúrky
+    private ImageIcon icon; // Ikona reprezentujúca figúrku vizuálne
+    private JLabel label;   // JLabel na zobrazenie figúrky na šachovnici
 
-
-
-    private ImageIcon icon; // Icon of the piece
-    private JLabel label;   // JLabel to display the piece
-
+    /**
+     * Predvolený konštruktor inicializujúci label.
+     */
     public Piece() {
-        label = new JLabel();
+        this.label = new JLabel();
     }
 
+    /**
+     * Konštruktor inicializujúci farbu a label figúrky.
+     *
+     * @param color Farba figúrky (čierna alebo biela).
+     */
     public Piece(Colors color) {
         this.color = color;
-        label = new JLabel();
+        this.label = new JLabel();
     }
 
-
-
-    public void setColor(Colors color) {
-        this.color = color;
-    }
-
-    // Abstract methods to get the color and type of the piece
-    public  Colors getColor(){
+    /**
+     * Metóda na získanie farby figúrky.
+     *
+     * @return Farba figúrky.
+     */
+    public Colors getColor() {
         return this.color;
     }
 
-
-
-
-    // Method to set the icon of the JLabel
+    /**
+     * Metóda na nastavenie ikony JLabel.
+     *
+     * @param icon Ikona, ktorá sa má nastaviť na JLabel.
+     */
     public void setIcon(ImageIcon icon) {
         this.icon = icon;
-        label.setIcon(icon);
+        this.label.setIcon(icon);
     }
 
-    // Method to get the JLabel
+    /**
+     * Metóda na získanie JLabel figúrky.
+     *
+     * @return JLabel figúrky.
+     */
     public JLabel getLabel() {
-        return label;
+        return this.label;
     }
-    // Abstract methods for move and capture actions
-    public abstract boolean isValidMove(Cell previousCell, Cell sourceCell);
-    public abstract void move(Cell previousCell, Cell sourceCell , Game game );
-    public void capture(Game game){
-        game.setCapture(true);
-    };
 
+    /**
+     * Abstraktná metóda na pohyb figúrky.
+     * Táto metóda musí byť implementovaná v každej podtriede.
+     *
+     * @param previousCell Bývalé pole, na ktorom figúrka stála.
+     * @param sourceCell Pole, na ktoré sa figúrka pohybuje.
+     * @param game Aktuálny stav hry.
+     */
+    public abstract void move(Cell previousCell, Cell sourceCell, Game game);
+
+    /**
+     * Metóda na zachytenie figúrky.
+     * Môže byť predefinovaná v podtriedach na konkrétne správanie.
+     *
+     * @param game Aktuálny stav hry.
+     */
+    public void capture(Game game) {
+        game.setCapture(true);
+    }
 }

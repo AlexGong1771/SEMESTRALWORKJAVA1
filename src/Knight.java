@@ -1,4 +1,5 @@
 import javax.swing.ImageIcon;
+
 /**
  * Write a description of class Rook here.
  *
@@ -7,7 +8,7 @@ import javax.swing.ImageIcon;
  */
 
 
-
+//kon
 public class Knight extends Piece {
 
     public Knight(Colors color) {
@@ -21,10 +22,7 @@ public class Knight extends Piece {
         }
     }
 
-    @Override
-    public boolean isValidMove(Cell previousCell, Cell sourceCell) {
-        return false;
-    }
+
 
     @Override
     public void move(Cell previousCell, Cell sourceCell , Game game ) {

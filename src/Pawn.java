@@ -15,21 +15,18 @@ public class Pawn extends Piece {
         super(color);
 
 
-        if (color.equals(Colors.BLACK)){
+        if (color.equals(Colors.BLACK)) {
             super.setIcon(new ImageIcon("C:\\Users\\42194\\IdeaProjects\\SEMESTRALWORKJAVA\\res\\obrazky\\black-pawn.png"));
-        } else{
+        } else {
             super.setIcon(new ImageIcon("C:\\Users\\42194\\IdeaProjects\\SEMESTRALWORKJAVA\\res\\obrazky\\white-pawn.png"));
         }
     }
 
-    @Override
-    public boolean isValidMove(Cell previousCell, Cell sourceCell) {
-        return false;
-    }
+
 
     @Override
-    public void move(Cell previousCell, Cell sourceCell ,Game game ) {
-         int rowOffset = 1;
+    public void move(Cell previousCell, Cell sourceCell , Game game ) {
+        int rowOffset = 1;
         int  colOffset = 6;
 
         if (previousCell.getPiece().getColor() == Colors.BLACK) {
@@ -42,7 +39,7 @@ public class Pawn extends Piece {
         } else if (previousCell.getRow() == sourceCell.getRow() + rowOffset && previousCell.getCol() == sourceCell.getCol()) {
             game.movePiece();
         } else if (!sourceCell.isOpen() && previousCell.getRow() == sourceCell.getRow() + rowOffset && Math.abs(previousCell.getCol() - sourceCell.getCol()) == 1) {
-            capture(game);
+            this.capture(game);
             game.movePiece();
         } else {
             game.clear();

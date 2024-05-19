@@ -10,29 +10,25 @@ import javax.swing.ImageIcon;
 
 
 public class Bishop  extends Piece {
-    //trieda Rook , pracujeme s farbou a v zaleznosti od farby ziskavame obrazok tej farby(black, white)
+
     public Bishop(Colors color) {
         super(color);
 
 
-        if (color.equals(Colors.BLACK)){
+        if (color.equals(Colors.BLACK)) {
             super.setIcon(new ImageIcon("C:\\Users\\42194\\IdeaProjects\\SEMESTRALWORKJAVA\\res\\obrazky\\black-bishop.png"));
-        } else{
+        } else {
             super.setIcon(new ImageIcon("C:\\Users\\42194\\IdeaProjects\\SEMESTRALWORKJAVA\\res\\obrazky\\white-bishop.png"));
         }
     }
 
-    @Override
-    public boolean isValidMove(Cell previousCell, Cell sourceCell) {
-        return false;
-    }
 
     @Override
-    public void move(Cell previousCell, Cell sourceCell ,Game game ) {
+    public void move(Cell previousCell, Cell sourceCell , Game game ) {
         int rowOffset = previousCell.getRow ( ) - sourceCell.getRow ( );
         int colOffset = previousCell.getCol ( ) - sourceCell.getCol ( );
         if ( Math.abs ( rowOffset ) == Math.abs ( colOffset ) ) {
-            capture(game);
+            this.capture(game);
             game.movePiece ( );
         } else {
             game.clear ( );

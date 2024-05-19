@@ -11,13 +11,11 @@ public class Game  implements MouseListener {
     private JFrame frame = new JFrame();
     private Board board = new Board();
 
-    private static Cell previousCell = null;
-    private static Cell sourceCell = null;
+    private static Cell previousCell ;
+    private static Cell sourceCell ;
     private Colors pieceColored;
 
-    public Colors getWhoseMove() {
-        return this.whoseMove;
-    }
+
 
     private Colors whoseMove;
     private static boolean active = false;
@@ -25,9 +23,7 @@ public class Game  implements MouseListener {
     private Color selected;
 
 
-    public void setPieceColored(Colors pieceColored) {
-        this.pieceColored = pieceColored;
-    }
+
 
     public void setSelected(Color selected) {
         this.selected = selected;
@@ -71,13 +67,11 @@ public class Game  implements MouseListener {
 
 
     //policko zisti ze si klikol na ake
-    @SuppressWarnings({"checkstyle:WhitespaceAfter", "checkstyle:NoWhitespaceAfter"})
+
     public void mouseClicked(MouseEvent e) {
-        sourceCell = (Cell) e.getSource();
+        sourceCell = ( Cell)e.getSource();
         if (!sourceCell.isOpen()) {
             this.pieceColored = sourceCell.getPiece().getColor();
-            //System.out.println("Koniec hry!!!");
-
         }
 
         if (!active && !sourceCell.isOpen()) {
@@ -85,45 +79,42 @@ public class Game  implements MouseListener {
             previousCell = sourceCell;
             this.selected = previousCell.getBackground();
             previousCell.setBackground(new Color(0, 175, 3));
-            //sourceCell.setBackground(new Color(175, 0, 70));
             if (!java.util.Objects.equals(previousCell.getPiece().getColor(), this.whoseMove)) {
                 this.clear();
             }
         } else if (active && previousCell.getPiece().getColor().equals(this.whoseMove)) {
             Piece pieceType = previousCell.getPiece();
-            pieceType.move(previousCell,sourceCell,this);
-
-            }
+            pieceType.move(previousCell, sourceCell, this);
 
         }
+
+    }
 
 
 
     //tato metoda vipise nam ci bol ten pohyb a ked on bol , cize ked figurka ide do noveho obdlznika nam vipise bol pohyb
     public void movePiece ( ) {
         System.out.println ( "Bol pohyb" );
-
-
-        if ( this.capture && !sourceCell.isOpen() && !previousCell.getPiece().getColor() == pieceColored  ) {
-            sourceCell.remove ( sourceCell.getPiece ( ) .getLabel());
+        if ( this.capture && !sourceCell.isOpen() && !previousCell.getPiece().getColor().equals(this.pieceColored)  ) {
+            sourceCell.remove ( sourceCell.getPiece().getLabel());
             sourceCell.setPiece ( null );
-            capture = false;
+            this.capture = false;
         }
 
         previousCell.setBackground ( this.selected );
-        sourceCell.add ( previousCell.getPiece ( ) .getLabel());
+        sourceCell.add ( previousCell.getPiece().getLabel());
         sourceCell.setPiece ( previousCell.getPiece ( ) );
         sourceCell.revalidate ( );
-        board.getjPanel().repaint ( );
+        this.board.getjPanel().repaint ( );
         active = false;
         previousCell.setStatus ( true );
         previousCell.setPiece ( null );
         sourceCell.setStatus ( false );
         previousCell = null;
-        if ( whoseMove.equals ( Colors.WHITE ) ) {
-            whoseMove = Colors.BLACK;
+        if ( this.whoseMove.equals ( Colors.WHITE ) ) {
+            this.whoseMove = Colors.BLACK;
         } else {
-            whoseMove = Colors.WHITE;
+            this.whoseMove = Colors.WHITE;
         }
 
     }
@@ -132,7 +123,7 @@ public class Game  implements MouseListener {
         System.out.println ( "Nebol ziadny pohyb alebo musi chodit super" );
         previousCell.setBackground ( this.selected );
         active = false;
-        capture = false;
+        this.capture = false;
         previousCell = null;
         sourceCell = null;
     }

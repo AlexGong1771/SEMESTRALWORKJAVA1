@@ -14,31 +14,28 @@ public class Rook extends Piece {
         super(color );
 
 
-        if (color.equals(Colors.BLACK)){
+        if (color.equals(Colors.BLACK)) {
             super.setIcon(new ImageIcon("C:\\Users\\42194\\IdeaProjects\\SEMESTRALWORKJAVA\\res\\obrazky\\black-rook.png"));
-        } else{
+        } else {
             super.setIcon(new ImageIcon("C:\\Users\\42194\\IdeaProjects\\SEMESTRALWORKJAVA\\res\\obrazky\\WHITEROOK.png"));
         }
     }
 
-    @Override
-    public boolean isValidMove(Cell previousCell, Cell sourceCell) {
-        return false;
-    }
+
 
     @Override
     public void move(Cell previousCell, Cell sourceCell , Game game ) {
         if ( previousCell.getRow ( ) != sourceCell.getRow ( ) && previousCell.getCol ( ) != sourceCell.getCol ( ) ) {
-           game.clear ( );
+            game.clear ( );
         } else {
-            capture(game);
+            this.capture(game);
             game.movePiece ( );
         }
     }
 
     @Override
     public void capture(Game game) {
-      super.capture(game);
+        super.capture(game);
     }
 
 

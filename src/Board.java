@@ -4,13 +4,13 @@ import javax.swing.JPanel;
 //tato trieda Board sluzi na to aby sme sa zobrazili to pole a tie obdlzniky a na nich nase figurky
 public class Board  {
     public JPanel getjPanel() {
-        return jPanel;
+        return this.jPanel;
     }
 
-    private JPanel jPanel =new JPanel();
+    private final JPanel jPanel = new JPanel();
     private Cell[][] cell = new Cell[ 8 ][ 8 ];
     private  Color black ;
-    private Color white = new Color ( 255 , 255 , 255 );
+    private  Color white;
     private Pawn[] blackPawn = new Pawn[ 8 ];
     private Bishop[] blackBishop = new Bishop[ 2 ];
     private Knight[] blackKnight = new Knight[ 2 ];
@@ -26,8 +26,9 @@ public class Board  {
     //tu ukazujeme ten Board
     public Board ( ) {
         this.initializePieces ( );
-        jPanel.setLayout ( new GridLayout ( 8 , 8 ) );
-        this.black = new Color (196, 152, 70, 255);
+        this.jPanel.setLayout ( new GridLayout ( 8 , 8 ) );
+        this.black = new Color(196, 152, 70, 255);
+        this.white = new Color(255, 255, 255);
         for ( int i = 0 ; i < 8 ; ++i ) {
             for ( int j = 0 ; j < 8 ; ++j ) {
                 if ( ( i + j ) % 2 == 0 ) {
@@ -39,7 +40,7 @@ public class Board  {
                 }
 
                 this.cell[ i ][ j ].setPosition ( i , j );
-                jPanel.add ( this.cell[ i ][ j ] );
+                this.jPanel.add ( this.cell[ i ][ j ] );
             }
         }
 
