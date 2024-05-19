@@ -18,9 +18,7 @@ public abstract class Piece {
     /**
      * Predvolený konštruktor inicializujúci label.
      */
-    public Piece() {
-        this.label = new JLabel();
-    }
+
 
     /**
      * Konštruktor inicializujúci farbu a label figúrky.
