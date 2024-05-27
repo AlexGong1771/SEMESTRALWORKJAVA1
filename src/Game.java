@@ -4,6 +4,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JPanel;
 import javax.swing.JFrame;
 
 //hlavna trieda Game kde sa pouziva ten algoritmus kazdej figurky
@@ -49,7 +50,7 @@ public class Game  implements MouseListener {
 
         for (int i = 0; i < 8; ++i) {
             for (int j = 0; j < 8; ++j) {
-                this.board.getCell(i, j).addMouseListener(this);
+                this.board.getCell(i, j).getjPanel().addMouseListener(this);
             }
         }
         this.frame.setSize(700, 700);
@@ -69,7 +70,8 @@ public class Game  implements MouseListener {
     //policko zisti ze si klikol na ake
 
     public void mouseClicked(MouseEvent e) {
-        sourceCell = ( Cell)e.getSource();
+        JPanel panel = (JPanel)e.getSource();
+        sourceCell = (Cell)panel.getClientProperty("cell");
         if (!sourceCell.isOpen()) {
             this.pieceColored = sourceCell.getPiece().getColor();
         }
@@ -77,8 +79,8 @@ public class Game  implements MouseListener {
         if (!active && !sourceCell.isOpen()) {
             active = true;
             previousCell = sourceCell;
-            this.selected = previousCell.getBackground();
-            previousCell.setBackground(new Color(0, 175, 3));
+            this.selected = previousCell.getjPanel().getBackground();
+            previousCell.getjPanel().setBackground(new Color(0, 175, 3));
             if (!java.util.Objects.equals(previousCell.getPiece().getColor(), this.whoseMove)) {
                 this.clear();
             }
@@ -98,15 +100,15 @@ public class Game  implements MouseListener {
     public void movePiece ( ) {
         System.out.println ( "Bol pohyb" );
         if ( this.capture && !sourceCell.isOpen() && !previousCell.getPiece().getColor().equals(this.pieceColored)  ) {
-            sourceCell.remove ( sourceCell.getPiece().getLabel());
+            sourceCell.getjPanel().remove ( sourceCell.getPiece().getLabel());
             sourceCell.setPiece ( null );
             this.capture = false;
         }
 
-        previousCell.setBackground ( this.selected );
-        sourceCell.add ( previousCell.getPiece().getLabel());
+        previousCell.getjPanel().setBackground ( this.selected );
+        sourceCell.getjPanel().add ( previousCell.getPiece().getLabel());
         sourceCell.setPiece ( previousCell.getPiece ( ) );
-        sourceCell.revalidate ( );
+        sourceCell.getjPanel().revalidate ( );
         this.board.getjPanel().repaint ( );
         active = false;
         previousCell.setStatus ( true );
@@ -123,7 +125,7 @@ public class Game  implements MouseListener {
     //ked sme nechodili fogurkou alebo ne nas cas chodit
     public void clear ( ) {
         System.out.println ( "Nebol ziadny pohyb alebo musi chodit super" );
-        previousCell.setBackground ( this.selected );
+        previousCell.getjPanel().setBackground ( this.selected );
         active = false;
         this.capture = false;
         previousCell = null;

@@ -32,7 +32,7 @@ public class King  extends Piece {
                 if (sourceCell.getRow() == 7 && sourceCell.getCol() == 6 && game.getBoard().getCell(7, 5).isOpen() && game.getBoard().getCell(7, 6).isOpen() && game.getBoard().getCell(7, 7).getPiece() instanceof Rook && game.getBoard().getCell(7, 7).getPiece().getColor().equals(Colors.WHITE)) {
 
                     this.moveAndChange(game , 7 , 5 , 7 , 7 , Colors.WHITE);
-                    game.setSelected( game.getBoard().getCell(7, 5).getBackground());
+                    game.setSelected( game.getBoard().getCell(7, 5).getjPanel().getBackground());
                     game.movePiece();
 
                 } else if (sourceCell.getRow() == 7 && sourceCell.getCol() == 2 && game.getBoard().getCell(7, 1).isOpen() && game.getBoard().getCell(7, 2).isOpen() && game.getBoard().getCell(7, 3).isOpen() && game.getBoard().getCell(7, 0).getPiece() instanceof Rook && game.getBoard().getCell(7, 0).getPiece().getColor().equals(Colors.WHITE)) {
@@ -45,7 +45,7 @@ public class King  extends Piece {
 
                     this.moveAndChange(game , 0 , 5 , 0 , 7 , Colors.BLACK);
 
-                    game.setSelected(game.getBoard().getCell(0, 5).getBackground());
+                    game.setSelected(game.getBoard().getCell(0, 5).getjPanel().getBackground());
                     game.movePiece();
                 } else if (sourceCell.getRow() == 0 && sourceCell.getCol() == 2 && game.getBoard().getCell(0, 1).isOpen() && game.getBoard().getCell(0, 2).isOpen() && game.getBoard().getCell(0, 3).isOpen() && game.getBoard().getCell(0, 0).getPiece() instanceof Rook && game.getBoard().getCell(0, 0).getPiece().getColor().equals(Colors.BLACK)) {
                     this.moveAndChange(game , 0 , 3 , 0 , 0 , Colors.BLACK);

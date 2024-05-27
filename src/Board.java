@@ -33,14 +33,14 @@ public class Board  {
             for ( int j = 0 ; j < 8 ; ++j ) {
                 if ( ( i + j ) % 2 == 0 ) {
                     this.cell[ i ][ j ] = new Cell ( i , j );
-                    this.cell[ i ][ j ].setBackground ( this.white );
+                    this.cell[ i ][ j ].getjPanel().setBackground ( this.white );
                 } else {
                     this.cell[ i ][ j ] = new Cell ( i , j );
-                    this.cell[ i ][ j ].setBackground ( this.black );
+                    this.cell[ i ][ j ].getjPanel().setBackground ( this.black );
                 }
 
                 this.cell[ i ][ j ].setPosition ( i , j );
-                this.jPanel.add ( this.cell[ i ][ j ] );
+                this.jPanel.add ( this.cell[ i ][ j ].getjPanel() );
             }
         }
 
@@ -74,40 +74,40 @@ public class Board  {
     //davame tie figurky na ich pozicie
     public void initializeChessBoard ( ) {
         for ( int i = 0 ; i < 8 ; ++i ) {
-            this.cell[ 1 ][ i ].add ( this.blackPawn[ i ].getLabel() );
-            this.cell[ 6 ][ i ].add ( this.whitePawn[ i ].getLabel());
+            this.cell[ 1 ][ i ].getjPanel().add ( this.blackPawn[ i ].getLabel() );
+            this.cell[ 6 ][ i ].getjPanel().add ( this.whitePawn[ i ].getLabel());
             this.cell[ 1 ][ i ].setPiece ( this.blackPawn[ i ] );
             this.cell[ 6 ][ i ].setPiece ( this.whitePawn[ i ] );
         }
 
-        this.cell[ 0 ][ 0 ].add ( this.blackRook[ 0 ].getLabel() );
-        this.cell[ 0 ][ 7 ].add ( this.blackRook[ 1 ].getLabel() );
-        this.cell[ 7 ][ 0 ].add ( this.whiteRook[ 0 ].getLabel() );
-        this.cell[ 7 ][ 7 ].add ( this.whiteRook[ 1 ].getLabel() );
+        this.cell[ 0 ][ 0 ].getjPanel().add ( this.blackRook[ 0 ].getLabel() );
+        this.cell[ 0 ][ 7 ].getjPanel().add ( this.blackRook[ 1 ].getLabel() );
+        this.cell[ 7 ][ 0 ].getjPanel().add ( this.whiteRook[ 0 ].getLabel() );
+        this.cell[ 7 ][ 7 ].getjPanel().add ( this.whiteRook[ 1 ].getLabel() );
         this.cell[ 0 ][ 0 ].setPiece ( this.blackRook[ 0 ] );
         this.cell[ 0 ][ 7 ].setPiece ( this.blackRook[ 1 ] );
         this.cell[ 7 ][ 0 ].setPiece ( this.whiteRook[ 0 ] );
         this.cell[ 7 ][ 7 ].setPiece ( this.whiteRook[ 1 ] );
-        this.cell[ 0 ][ 1 ].add ( this.blackKnight[ 0 ].getLabel() );
-        this.cell[ 0 ][ 6 ].add ( this.blackKnight[ 1 ].getLabel() );
-        this.cell[ 7 ][ 1 ].add ( this.whiteKnight[ 0 ].getLabel() );
-        this.cell[ 7 ][ 6 ].add ( this.whiteKnight[ 1 ].getLabel());
+        this.cell[ 0 ][ 1 ].getjPanel().add ( this.blackKnight[ 0 ].getLabel() );
+        this.cell[ 0 ][ 6 ].getjPanel().add ( this.blackKnight[ 1 ].getLabel() );
+        this.cell[ 7 ][ 1 ].getjPanel().add ( this.whiteKnight[ 0 ].getLabel() );
+        this.cell[ 7 ][ 6 ].getjPanel().add ( this.whiteKnight[ 1 ].getLabel());
         this.cell[ 0 ][ 1 ].setPiece ( this.blackKnight[ 0 ] );
         this.cell[ 0 ][ 6 ].setPiece ( this.blackKnight[ 1 ] );
         this.cell[ 7 ][ 1 ].setPiece ( this.whiteKnight[ 0 ] );
         this.cell[ 7 ][ 6 ].setPiece ( this.whiteKnight[ 1 ] );
-        this.cell[ 0 ][ 2 ].add ( this.blackBishop[ 0 ].getLabel() );
-        this.cell[ 0 ][ 5 ].add ( this.blackBishop[ 1 ].getLabel() );
-        this.cell[ 7 ][ 2 ].add ( this.whiteBishop[ 0 ].getLabel());
-        this.cell[ 7 ][ 5 ].add ( this.whiteBishop[ 1 ].getLabel() );
+        this.cell[ 0 ][ 2 ].getjPanel().add ( this.blackBishop[ 0 ].getLabel() );
+        this.cell[ 0 ][ 5 ].getjPanel().add ( this.blackBishop[ 1 ].getLabel() );
+        this.cell[ 7 ][ 2 ].getjPanel().add ( this.whiteBishop[ 0 ].getLabel());
+        this.cell[ 7 ][ 5 ].getjPanel().add ( this.whiteBishop[ 1 ].getLabel() );
         this.cell[ 0 ][ 2 ].setPiece ( this.blackBishop[ 0 ] );
         this.cell[ 0 ][ 5 ].setPiece ( this.blackBishop[ 1 ] );
         this.cell[ 7 ][ 2 ].setPiece ( this.whiteBishop[ 0 ] );
         this.cell[ 7 ][ 5 ].setPiece ( this.whiteBishop[ 1 ] );
-        this.cell[ 0 ][ 3 ].add ( this.blackQueen.getLabel() );
-        this.cell[ 0 ][ 4 ].add ( this.blackKing.getLabel());
-        this.cell[ 7 ][ 3 ].add ( this.whiteQueen.getLabel() );
-        this.cell[ 7 ][ 4 ].add ( this.whiteKing.getLabel() );
+        this.cell[ 0 ][ 3 ].getjPanel().add ( this.blackQueen.getLabel() );
+        this.cell[ 0 ][ 4 ].getjPanel().add ( this.blackKing.getLabel());
+        this.cell[ 7 ][ 3 ].getjPanel().add ( this.whiteQueen.getLabel() );
+        this.cell[ 7 ][ 4 ].getjPanel().add ( this.whiteKing.getLabel() );
         this.cell[ 0 ][ 3 ].setPiece ( this.blackQueen );
         this.cell[ 0 ][ 4 ].setPiece ( this.blackKing );
         this.cell[ 7 ][ 3 ].setPiece ( this.whiteQueen );
